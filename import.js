@@ -4,7 +4,7 @@
 var request = require('request');
 var fs = require('fs');
 var async = require('async');
-var spawn = require('child_process').spawn;
+var child_process = require('child_process');
 
 var config = require(process.cwd()+'/config.json');
 
@@ -27,11 +27,8 @@ for(var id in config.exposures) {
 //ssh from odiuser
 async.forEachOf(config.exposures, function(logical_id, id, next) {
     console.log("handling "+logical_id);
-    var scp = spawn('scp', ['-r','-i','~/.ssh/odiuser.id_rsa', 'odiuser@karst.uits.iu.edu:/N/dc2/scratch/odiuser/SPIE_in/'+logical_id, id]);    
-    scp.on('close', function(code) {
-        console.log("code "+code);
-        next();
-    });
+    child_process.execSync('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@karst.uits.iu.edu:/N/dc2/scratch/odiuser/SPIE_in/'+logical_id+' '+id);    
+    next();
 }, function(err) {
     if(err) throw err;
     fs.writeFile('products.json', JSON.stringify([product]), function(err) {
