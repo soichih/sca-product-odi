@@ -31,6 +31,7 @@ async.forEachOf(config.exposures, function(logical_id, id, next) {
     child_process.execSync('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@karst.uits.iu.edu:/N/dc2/scratch/odiuser/SPIE_in/'+logical_id+' '+id, 
         {stdio:[0,1,2]}
     );    
+    product.exposures.push(id);
     next();
 }, function(err) {
     if(err) throw err;
