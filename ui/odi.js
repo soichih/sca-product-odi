@@ -3,7 +3,7 @@
 (function() {
 
 //https://github.com/danialfarid/ng-file-upload
-var service = angular.module('sca-product-nifti', [ ]);
+var service = angular.module('sca-product-odi', [ ]);
 service.directive('scaProductNifti', ['appconf', 'toaster', 
 function(appconf, toaster) {
     return {
@@ -11,7 +11,7 @@ function(appconf, toaster) {
         scope: {
             files: '=',
         }, 
-        templateUrl: 'bower_components/sca-product-nifti/ui/nifti.html',
+        templateUrl: 'bower_components/sca-product-odi/ui/odi.html',
         link: function(scope, element) {
         }
     };

@@ -13,10 +13,10 @@
   "author": "Soichi Hayashi <hayashis@iu.edu>",
   "license": "ISC",
   "sca": {
-    "label": "Nifti Neuroimaging",
+    "label": "ODI data product",
     "resource_query": "todo..",
     "bin": {
-        "run": "./import.py"
+        "run": "import.sh"
     }
   }
 }
