@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "import.sh"
   },
   "repository": {
     "type": "git",
@@ -12,13 +13,6 @@
   },
   "author": "Soichi Hayashi <hayashis@iu.edu>",
   "license": "ISC",
-  "sca": {
-    "label": "ODI data product",
-    "resource_query": "todo..",
-    "bin": {
-      "run": "import.sh"
-    }
-  },
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "request": "^2.72.0"

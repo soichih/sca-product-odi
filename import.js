@@ -28,6 +28,7 @@ for(var id in config.exposures) {
 async.forEachOf(config.exposures, function(logical_id, id, next) {
     console.log("handling "+logical_id);
     //child_process.execSync('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@dataxfer.bigred2.uits.iu.edu:/N/dc2/scratch/odiuser/SPIE_in/'+logical_id+' '+id, 
+    //TODO I should probably use rsync?
     child_process.execSync('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@karst.uits.iu.edu:/N/dc2/scratch/odiuser/SPIE_in/'+logical_id+' '+id, 
         {stdio:[0,1,2]}
     );    
