@@ -97,7 +97,7 @@ db.once('open', function() {
        }, 
         function(next) {
             //handle exposures
-            async.eachSeries(config.exposures, function(id, next_exp) {
+            async.eachSeries(config.exps, function(id, next_exp) {
                 console.log("handling exposure:"+id);
                 Exposure.findById(id, function(err, exp) {
                     if(err) return next_exp(err);
