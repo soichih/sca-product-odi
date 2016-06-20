@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 
 var config = require(process.cwd()+'/config.json');
 
-var product = {exposures: [], dark: null, flat: null, bias: null};
+var product = {exps: [], dark: null, flat: null, bias: null};
 var source = "/N/dc2/scratch/odiuser/SPIE_in";
 
 /* symlink
@@ -103,7 +103,7 @@ db.once('open', function() {
                     if(err) return next_exp(err);
                     copy("/N/dc2/scratch/odiuser/SPIE_in/"+exp.logical_id, "exps/"+exp.logical_id, function(err) {
                         if(err) return next_exp(err);
-                        product.exposures.push(id);
+                        product.exps.push(id);
                         next_exp();
                     });
                 });

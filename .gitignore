@@ -4,3 +4,4 @@ test/exps
 test/bias
 test/flat
 test/dark
+test/products.json
