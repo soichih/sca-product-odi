@@ -113,6 +113,7 @@ db.once('open', function() {
         fs.writeFile('products.json', JSON.stringify([product]), function(err) {
             if(err) throw err;
             console.log("wrote products.json");
+            db.close();
         });
     });
 
