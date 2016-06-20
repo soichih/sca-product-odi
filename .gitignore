@@ -1,2 +1,6 @@
 barn
 node_modules
+test/exps
+test/bias
+test/flat
+test/dark
