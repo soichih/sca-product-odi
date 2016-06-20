@@ -36,8 +36,9 @@ db.on('error', function(err) {
 
 function copy(src, dest, cb) {
     //TODO - to validation to make sure user specified valid src/dest..
-    console.log("scp-ing from odiuser@karst:"+src+" to "+dest);
-    child_process.exec('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@karst.uits.iu.edu:'+src+' '+dest, {stdio:[0,1,2]}, function(err, stdout, stderr) {
+    console.log("rsync-ing from odiuser@karst:"+src+" to "+dest);
+    //child_process.exec('scp -r -i ~/.ssh/odiuser.id_rsa odiuser@karst.uits.iu.edu:'+src+' '+dest, {stdio:[0,1,2]}, function(err, stdout, stderr) {
+    child_process.exec('rsync -avz -e "ssh -i '+process.env.HOME+'/.ssh/odiuser.id_rsa" odiuser@karst.uits.iu.edu:'+src+'/ '+dest, function(err, stdout, stderr) {
         console.log(stdout);
         console.error(stderr);
         cb(err);
