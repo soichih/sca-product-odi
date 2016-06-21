@@ -60,9 +60,11 @@ db.once('open', function() {
                 //console.log(exp._id);
                 //console.log(exp.type);
                 //console.log(exp._cache);
-                copy(exp._cache, "bias/"+exp.logical_id, function(err) {
+                var dest = "bias/"+exp.logical_id;
+                copy(exp._cache, dest, function(err) {
                     if(err) return next(err);
-                    product.bias = exp._id;
+                    //product.bias = exp._id;
+                    product.bias = dest;
                     next();
                 });
             });
@@ -74,9 +76,11 @@ db.once('open', function() {
             Exposure.findById(config.flat, function(err, exp) {
                 if(err) return next(err);
                 var exp = exp.toObject(); //without this, I can't access _cache
-                copy(exp._cache, "flat/"+exp.logical_id, function(err) {
+                var dest = "flat/"+exp.logical_id;
+                copy(exp._cache, dest, function(err) {
                     if(err) return next(err);
-                    product.flat = exp._id;
+                    //product.flat = exp._id;
+                    product.flat = dest;
                     next();
                 });
             });
@@ -88,9 +92,11 @@ db.once('open', function() {
             Exposure.findById(config.dark, function(err, exp) {
                 if(err) return next(err);
                 var exp = exp.toObject(); //without this, I can't access _cache
-                copy(exp._cache, "dark/"+exp.logical_id, function(err) {
+                var dest = "dark/"+exp.logical_id;
+                copy(exp._cache, dest, function(err) {
                     if(err) return next(err);
-                    product.dark = exp._id;
+                    //product.dark = exp._id;
+                    product.dark = dest;
                     next();
                 });
             });
@@ -103,7 +109,7 @@ db.once('open', function() {
                     if(err) return next_exp(err);
                     copy("/N/dc2/scratch/odiuser/SPIE_in/"+exp.logical_id, "exps/"+exp.logical_id, function(err) {
                         if(err) return next_exp(err);
-                        product.exps.push(id);
+                        product.exps.push("exps/"+exp.logical_id);
                         next_exp();
                     });
                 });
