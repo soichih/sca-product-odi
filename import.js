@@ -46,6 +46,8 @@ function copy(src, dest, cb) {
 }
 
 db.once('open', function() {
+    console.log("connected to mongo!");
+
     async.series([
         function(next) {
             if(!config.bias) return next();
@@ -54,12 +56,9 @@ db.once('open', function() {
             Exposure.findById(config.bias, function(err, exp) {
                 if(err) return next(err);
                 if(!exp) return next("couldn't find such bias:"+config.bias);
-                //var exp = JSON.stringify(exp);
+                console.log("exposure lookup success");
+                console.dir(exp);
                 var exp = exp.toObject(); //without this, I can't access _cache
-                //console.log(JSON.stringify(exp, null, 4));
-                //console.log(exp._id);
-                //console.log(exp.type);
-                //console.log(exp._cache);
                 var dest = "bias/"+exp.logical_id;
                 copy(exp._cache, dest, function(err) {
                     if(err) return next(err);
