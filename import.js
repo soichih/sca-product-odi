@@ -106,9 +106,11 @@ db.once('open', function() {
                 console.log("handling exposure:"+id);
                 Exposure.findById(id, function(err, exp) {
                     if(err) return next_exp(err);
-                    copy(source+"/"+exp.logical_id, "exps/"+exp.logical_id, function(err) {
+                    var dest = "exps/"+exp.logical_id;
+                    //copy(source+"/"+exp.logical_id, dest, function(err) {
+                    copy(exp._cache, dest, function(err) {
                         if(err) return next_exp(err);
-                        product.exps.push("exps/"+exp.logical_id);
+                        product.exps.push(dest);
                         next_exp();
                     });
                 });
