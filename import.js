@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var config = require(process.cwd()+'/config.json');
 
 var product = {exps: [], dark: null, flat: null, bias: null};
-var source = "/N/dc2/scratch/odiuser/SPIE_in";
+var source = "/N/dcwan/scratch/odiuser/SPIE_in";
 
 /* symlink
 for(var id in config.exposures) {
