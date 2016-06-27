@@ -106,6 +106,7 @@ db.once('open', function() {
                 console.log("handling exposure:"+id);
                 Exposure.findById(id, function(err, exp) {
                     if(err) return next_exp(err);
+                    var exp = exp.toObject(); //without this, I can't access _cache
                     var dest = "exps/"+exp.logical_id;
                     //copy(source+"/"+exp.logical_id, dest, function(err) {
                     copy(exp._cache, dest, function(err) {
