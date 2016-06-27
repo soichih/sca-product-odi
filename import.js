@@ -106,7 +106,7 @@ db.once('open', function() {
                 console.log("handling exposure:"+id);
                 Exposure.findById(id, function(err, exp) {
                     if(err) return next_exp(err);
-                    copy("/N/dc2/scratch/odiuser/SPIE_in/"+exp.logical_id, "exps/"+exp.logical_id, function(err) {
+                    copy(source+"/"+exp.logical_id, "exps/"+exp.logical_id, function(err) {
                         if(err) return next_exp(err);
                         product.exps.push("exps/"+exp.logical_id);
                         next_exp();
